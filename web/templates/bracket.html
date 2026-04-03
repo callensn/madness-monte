@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bracket Detail</title>
+  <link rel="stylesheet" href="/static/css/style.css?v=4">
+  <link rel="stylesheet" href="/static/css/bracket.css?v=4">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="back-link">&larr; Leaderboard</a>
+      <div id="bracket-header" class="bracket-header-info"></div>
+    </div>
+  </header>
+
+  <main>
+    <div id="bracket-container" class="bracket-container">
+      <!-- Left half: East (top) + South (bottom) -->
+      <div class="bracket-half bracket-left">
+        <div class="region-wrapper">
+          <div class="region-label" id="label-top-left"></div>
+          <div class="region region-ltr" id="region-top-left"></div>
+        </div>
+        <div class="region-wrapper">
+          <div class="region-label" id="label-bottom-left"></div>
+          <div class="region region-ltr" id="region-bottom-left"></div>
+        </div>
+      </div>
+
+      <!-- Center: Final Four + Championship -->
+      <div class="bracket-center">
+        <div class="ff-slot" id="ff-game-0"></div>
+        <div class="champ-slot" id="championship"></div>
+        <div class="ff-slot" id="ff-game-1"></div>
+      </div>
+
+      <!-- Right half: West (top) + Midwest (bottom) -->
+      <div class="bracket-half bracket-right">
+        <div class="region-wrapper">
+          <div class="region-label" id="label-top-right"></div>
+          <div class="region region-rtl" id="region-top-right"></div>
+        </div>
+        <div class="region-wrapper">
+          <div class="region-label" id="label-bottom-right"></div>
+          <div class="region region-rtl" id="region-bottom-right"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/static/js/bracket.js?v=4"></script>
+</body>
+</html>

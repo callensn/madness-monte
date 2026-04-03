@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>March Madness 2026 — Bracket Tracker</title>
+  <link rel="stylesheet" href="/static/css/style.css?v=4">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>March Madness <span class="year">2026</span></h1>
+      <a href="/bracket/current" class="current-bracket-btn">Current Bracket</a>
+      <div id="stats-bar" class="stats-bar">Loading...</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="leaderboard-card">
+        <h2>Bracket Leaderboard</h2>
+        <table id="leaderboard">
+          <thead>
+            <tr>
+              <th class="col-rank">#</th>
+              <th class="col-id">Bracket</th>
+              <th class="col-pts">Points</th>
+              <th class="col-potential">Potential</th>
+              <th class="col-correct">Correct</th>
+              <th class="col-accuracy">Accuracy</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboard-body">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="/static/js/leaderboard.js?v=4"></script>
+</body>
+</html>

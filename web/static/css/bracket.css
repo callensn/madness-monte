@@ -1,0 +1,339 @@
+/* ============================================================
+   Bracket Tree Layout
+   ============================================================ */
+
+.bracket-container {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  padding: 20px 10px;
+  min-width: 1300px;
+  overflow-x: auto;
+}
+
+/* ---- Half (left / right) ---- */
+
+.bracket-half {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---- Center (Final Four + Championship) ---- */
+
+.bracket-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 170px;
+  padding: 0 8px;
+}
+
+/* ---- Region ---- */
+
+.region-wrapper {
+  flex: 1;
+}
+
+.region-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent);
+  padding: 4px 8px;
+  margin-bottom: 4px;
+}
+
+.bracket-right .region-label {
+  text-align: right;
+}
+
+.region {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  height: 100%;
+}
+
+/* ---- Round column ---- */
+
+.round-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 16px 2px 0;
+  position: relative;
+}
+
+/* ---- Game slot ---- */
+
+.game-slot {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin: 2px 4px;
+  padding: 0;
+  min-width: 125px;
+  font-size: 11px;
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.game-slot:hover {
+  border-color: var(--border-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Status indicators — left accent bar */
+.game-slot.correct {
+  border-left: 3px solid var(--green);
+  background: var(--green-bg);
+}
+
+.game-slot.incorrect {
+  border-left: 3px solid var(--red);
+  background: var(--red-bg);
+}
+
+.game-slot.pending {
+  border-left: 3px solid var(--border);
+}
+
+/* Current bracket: no color coding */
+.game-slot.none {
+  border-left: 3px solid var(--accent);
+}
+
+/* Upcoming matchups: teams known but no winner yet */
+.game-slot.upcoming {
+  border-left: 3px solid var(--border);
+  opacity: 0.6;
+}
+
+/* Empty placeholder: no teams determined yet */
+.game-slot.empty {
+  border-left: 3px solid var(--border);
+  opacity: 0.35;
+}
+
+.empty-team .name {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 10px;
+}
+
+/* Right-side regions: accent bar on right */
+.region-rtl .game-slot.correct {
+  border-left: 1px solid var(--border);
+  border-right: 3px solid var(--green);
+}
+
+.region-rtl .game-slot.incorrect {
+  border-left: 1px solid var(--border);
+  border-right: 3px solid var(--red);
+}
+
+.region-rtl .game-slot.pending {
+  border-left: 1px solid var(--border);
+  border-right: 3px solid var(--border);
+}
+
+.region-rtl .game-slot.none {
+  border-left: 1px solid var(--border);
+  border-right: 3px solid var(--accent);
+}
+
+.region-rtl .game-slot.upcoming {
+  border-left: 1px solid var(--border);
+  border-right: 3px solid var(--border);
+}
+
+.region-rtl .game-slot.empty {
+  border-left: 1px solid var(--border);
+  border-right: 3px solid var(--border);
+}
+
+/* ---- Team line inside game slot ---- */
+
+.team-line {
+  display: flex;
+  align-items: center;
+  padding: 3px 6px;
+  gap: 5px;
+  border-bottom: 1px solid var(--border);
+}
+
+.team-line:last-child {
+  border-bottom: none;
+}
+
+.team-line .seed {
+  font-weight: 700;
+  color: var(--text-muted);
+  min-width: 18px;
+  font-size: 10px;
+  text-align: right;
+}
+
+.team-line .name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+}
+
+/* Winner styling */
+.team-line.is-winner {
+  font-weight: 600;
+}
+
+.team-line.is-winner .name {
+  color: var(--text-primary);
+}
+
+.team-line.is-loser .name {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* Correct pick: winner in green */
+.game-slot.correct .team-line.is-winner .name {
+  color: var(--green);
+}
+
+/* Incorrect pick: predicted winner in red */
+.game-slot.incorrect .team-line.is-winner .name {
+  color: var(--red);
+}
+
+/* Actual winner hint on incorrect games */
+.actual-winner-hint {
+  font-size: 9px;
+  color: var(--green);
+  padding: 1px 6px 3px;
+  text-align: right;
+  opacity: 0.8;
+}
+
+/* ---- Connector lines between rounds ---- */
+
+/* Left-to-right connectors */
+.region-ltr .round-column:not(:last-child) .game-slot::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  width: 5px;
+  height: 1px;
+  background: var(--border-light);
+}
+
+.region-ltr .round-column:not(:first-child) .game-slot::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  width: 5px;
+  height: 1px;
+  background: var(--border-light);
+}
+
+/* Right-to-left connectors */
+.region-rtl .round-column:not(:last-child) .game-slot::after {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  width: 5px;
+  height: 1px;
+  background: var(--border-light);
+}
+
+.region-rtl .round-column:not(:first-child) .game-slot::before {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  width: 5px;
+  height: 1px;
+  background: var(--border-light);
+}
+
+/* ---- Final Four / Championship slots ---- */
+
+.ff-slot,
+.champ-slot {
+  width: 100%;
+}
+
+.champ-slot {
+  position: relative;
+}
+
+.champ-slot .game-slot {
+  border: 2px solid var(--gold);
+  min-width: 150px;
+}
+
+.champ-slot .game-slot.correct {
+  border-color: var(--green);
+  border-left-width: 3px;
+}
+
+.champ-slot .game-slot.incorrect {
+  border-color: var(--red);
+  border-left-width: 3px;
+}
+
+.champ-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.ff-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 3px;
+}
+
+/* ---- Champion banner ---- */
+
+.champion-banner {
+  text-align: center;
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ---- Round headers ---- */
+
+.round-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 2px 0;
+}
