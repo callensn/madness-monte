@@ -56,8 +56,8 @@ ROUND_1_MATCHUPS: list[tuple[int, int]] = [
 
 # Final Four pairings: which two regions play each other.
 FINAL_FOUR_PAIRS: list[tuple[str, str]] = [
-    ("East", "West"),
-    ("South", "Midwest"),
+    ("East", "South"),
+    ("West", "Midwest"),
 ]
 
 REGIONS = ["East", "West", "South", "Midwest"]
