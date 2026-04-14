@@ -1,5 +1,5 @@
 {
-  "current_round": 5,
+  "current_round": 6,
   "rounds": {
     "1": [
       {
@@ -693,6 +693,18 @@
         "winning_region": "Midwest"
       }
     ],
-    "6": null
+    "6": [
+      {
+        "region": null,
+        "round_num": 6,
+        "game_index": 0,
+        "home_seed": 2,
+        "home_region": "East",
+        "away_seed": 1,
+        "away_region": "Midwest",
+        "winning_seed": 1,
+        "winning_region": "Midwest"
+      }
+    ]
   }
 }
